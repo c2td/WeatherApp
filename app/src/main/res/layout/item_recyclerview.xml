@@ -1,0 +1,49 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:background="@color/colorTransparent"
+    android:id="@+id/recyclerview_row">
+
+    <TextView
+        android:id="@+id/place_title"
+        style="@style/WeatherText"
+        android:layout_width="0dp"
+        android:layout_weight="6"
+        android:layout_height="@dimen/places_row_height"
+        android:gravity="center_vertical"
+        android:paddingStart="@dimen/default_margin"
+        android:textStyle="bold"
+        tools:ignore="RtlSymmetry" />
+
+    <TextView
+        android:id="@+id/place_day_max"
+        style="@style/WeatherText"
+        android:paddingStart="@dimen/default_margin"
+        android:gravity="center"
+        android:layout_weight="2"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        tools:ignore="RtlSymmetry" />
+
+    <TextView
+        android:id="@+id/dots_separator"
+        android:layout_weight="1"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:text=".."
+        tools:ignore="HardcodedText" />
+
+    <TextView
+        android:id="@+id/place_night_min"
+        style="@style/WeatherText"
+        android:gravity="center"
+        android:layout_weight="2"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:paddingEnd="@dimen/default_margin"
+        tools:ignore="RtlSymmetry" />
+
+</LinearLayout>

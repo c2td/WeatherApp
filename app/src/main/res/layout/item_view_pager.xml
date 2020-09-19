@@ -1,0 +1,470 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorPrimary"
+        android:animateLayoutChanges="true">
+
+        <!-- Day Card -->
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/card_view_day"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/default_margin"
+            app:layout_constraintTop_toTopOf="parent"
+            app:cardElevation="@dimen/card_elevation"
+            card_view:cardBackgroundColor="@color/colorCardBg"
+            card_view:cardCornerRadius="@dimen/card_radius">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/default_margin"
+                android:animateLayoutChanges="true">
+
+                <TextView
+                    android:layout_width="@dimen/card_title_width"
+                    android:layout_height="@dimen/card_title_height"
+                    android:text="@string/day"
+                    android:textStyle="bold"
+                    android:textColor="@android:color/white"
+                    android:background="@color/colorPrimary"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"/>
+
+                <TextView
+                    android:id="@+id/max_day"
+                    style="@style/WeatherText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/max_temp_margin_start"
+                    android:layout_marginTop="@dimen/max_temp_margin_top"
+                    android:textSize="@dimen/max_temp_font_size"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"/>
+
+                <TextView
+                    android:id="@+id/min_day"
+                    style="@style/WeatherText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/min_temp_margin_start"
+                    android:layout_marginBottom="@dimen/min_temp_margin_bottom"
+                    android:textSize="@dimen/min_temp_font_size"
+                    app:layout_constraintBottom_toBottomOf="@id/max_day"
+                    app:layout_constraintLeft_toRightOf="@id/max_day" />
+
+                <TextView
+                    style="@style/WeatherText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/dots_separator_margin"
+                    android:text=".."
+                    android:textSize="@dimen/dots_separator_font_size"
+                    app:layout_constraintBottom_toBottomOf="@id/max_day"
+                    app:layout_constraintLeft_toRightOf="@id/max_day"
+                    app:layout_constraintRight_toLeftOf="@id/min_day"
+                    tools:ignore="HardcodedText" />
+
+                <ImageView
+                    android:id="@+id/icon_day"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/icon_margin_top"
+                    android:layout_marginEnd="@dimen/icon_margin_end"
+                    android:src="@drawable/sun"
+                    android:contentDescription="@string/weather_icon"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/phenomenon_day"
+                    style="@style/WeatherText"
+                    android:maxWidth="@dimen/phenomenon_max_width"
+                    android:gravity="center"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="@dimen/phenomenon_margin_end"
+                    app:layout_constraintRight_toLeftOf="@id/icon_day"
+                    app:layout_constraintTop_toTopOf="@id/icon_day"
+                    app:layout_constraintBottom_toBottomOf="@id/icon_day"
+                    tools:text="Light shower" />
+
+                <ImageView
+                    android:id="@+id/expand_day_icon"
+                    android:visibility="gone"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_expand_arrow"
+                    android:contentDescription="@string/expand_icon"
+                    app:layout_constraintTop_toBottomOf="@id/icon_day"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toRightOf="parent" />
+
+                <LinearLayout
+                    android:id="@+id/expanded_day"
+                    android:visibility="gone"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    app:layout_constraintTop_toBottomOf="@id/expand_day_icon"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toRightOf="parent">
+
+                    <TextView
+                        android:id="@+id/description_day"
+                        style="@style/WeatherText"
+                        android:layout_margin="@dimen/default_margin"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        app:layout_constraintTop_toTopOf="parent"
+                        android:layout_marginTop="@dimen/default_margin" />
+
+                    <TextView
+                        android:id="@+id/label_peipsi_day"
+                        style="@style/WeatherText"
+                        android:text="@string/peipsi"
+                        android:textStyle="bold"
+                        android:visibility="gone"
+                        android:layout_marginTop="@dimen/default_margin"
+                        android:layout_marginStart="@dimen/default_margin"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        app:layout_constraintTop_toBottomOf="@id/description_day" />
+
+                    <TextView
+                        android:id="@+id/description_peipsi_day"
+                        style="@style/WeatherText"
+                        android:visibility="gone"
+                        android:layout_marginStart="@dimen/default_margin"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        app:layout_constraintTop_toBottomOf="@id/label_peipsi_day"/>
+
+                    <TextView
+                        android:id="@+id/label_sea_day"
+                        style="@style/WeatherText"
+                        android:text="@string/sea"
+                        android:visibility="gone"
+                        android:textStyle="bold"
+                        android:layout_marginTop="@dimen/default_margin"
+                        android:layout_marginStart="@dimen/default_margin"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        app:layout_constraintTop_toBottomOf="@id/description_peipsi_day" />
+
+                    <TextView
+                        android:id="@+id/description_sea_day"
+                        style="@style/WeatherText"
+                        android:visibility="gone"
+                        android:layout_marginStart="@dimen/default_margin"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        app:layout_constraintTop_toBottomOf="@id/label_sea_day"/>
+
+                </LinearLayout>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </androidx.cardview.widget.CardView>
+
+        <!-- Night Card -->
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/card_view_night"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/default_margin"
+            app:layout_constraintTop_toBottomOf="@id/card_view_day"
+            app:cardElevation="@dimen/card_elevation"
+            card_view:cardBackgroundColor="@color/colorCardBg"
+            card_view:cardCornerRadius="@dimen/card_radius">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/default_margin"
+                android:animateLayoutChanges="true">
+
+                <TextView
+                    android:layout_width="@dimen/card_title_width"
+                    android:layout_height="@dimen/card_title_height"
+                    android:text="@string/night"
+                    android:textStyle="bold"
+                    android:textColor="@android:color/white"
+                    android:background="@color/colorPrimary"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"/>
+
+                <TextView
+                    android:id="@+id/max_night"
+                    style="@style/WeatherText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/max_temp_margin_start"
+                    android:layout_marginTop="@dimen/max_temp_margin_top"
+                    android:textSize="@dimen/max_temp_font_size"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/min_night"
+                    style="@style/WeatherText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/min_temp_margin_start"
+                    android:layout_marginBottom="@dimen/min_temp_margin_bottom"
+                    android:textSize="@dimen/min_temp_font_size"
+                    app:layout_constraintBottom_toBottomOf="@id/max_night"
+                    app:layout_constraintLeft_toRightOf="@id/max_night" />
+
+                <TextView
+                    style="@style/WeatherText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/dots_separator_margin"
+                    android:text=".."
+                    android:textSize="@dimen/dots_separator_font_size"
+                    app:layout_constraintBottom_toBottomOf="@id/max_night"
+                    app:layout_constraintLeft_toRightOf="@id/max_night"
+                    app:layout_constraintRight_toLeftOf="@id/min_night"
+                    tools:ignore="HardcodedText" />
+
+                <ImageView
+                    android:id="@+id/icon_night"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/icon_margin_top"
+                    android:layout_marginEnd="@dimen/icon_margin_end"
+                    tools:src="@drawable/sun"
+                    android:contentDescription="@string/weather_icon"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/phenomenon_night"
+                    style="@style/WeatherText"
+                    android:maxWidth="@dimen/phenomenon_max_width"
+                    android:gravity="center"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="@dimen/phenomenon_margin_end"
+                    app:layout_constraintBottom_toBottomOf="@id/icon_night"
+                    app:layout_constraintTop_toTopOf="@id/icon_night"
+                    app:layout_constraintRight_toLeftOf="@id/icon_night"
+                    tools:text="Light shower" />
+
+                <ImageView
+                    android:id="@+id/expand_night_icon"
+                    android:visibility="gone"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_expand_arrow"
+                    android:contentDescription="@string/expand_icon"
+                    app:layout_constraintTop_toBottomOf="@id/icon_night"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toRightOf="parent" />
+
+                <LinearLayout
+                    android:id="@+id/expanded_night"
+                    android:visibility="gone"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    app:layout_constraintTop_toBottomOf="@id/expand_night_icon"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toRightOf="parent">
+
+                    <TextView
+                        android:id="@+id/description_night"
+                        style="@style/WeatherText"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="@dimen/default_margin"
+                        app:layout_constraintTop_toBottomOf="@id/expand_night_icon"/>
+
+                    <TextView
+                        android:id="@+id/label_peipsi_night"
+                        style="@style/WeatherText"
+                        android:visibility="gone"
+                        android:text="@string/peipsi"
+                        android:textStyle="bold"
+                        android:layout_marginTop="@dimen/default_margin"
+                        android:layout_marginStart="@dimen/default_margin"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        app:layout_constraintTop_toBottomOf="@id/description_night"/>
+
+                    <TextView
+                        android:id="@+id/description_peipsi_night"
+                        style="@style/WeatherText"
+                        android:visibility="gone"
+                        android:layout_marginStart="@dimen/default_margin"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        app:layout_constraintTop_toBottomOf="@id/label_peipsi_night"/>
+
+                    <TextView
+                        android:id="@+id/label_sea_night"
+                        style="@style/WeatherText"
+                        android:text="@string/sea"
+                        android:textStyle="bold"
+                        android:visibility="gone"
+                        android:layout_marginTop="@dimen/default_margin"
+                        android:layout_marginStart="@dimen/default_margin"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        app:layout_constraintTop_toBottomOf="@id/description_peipsi_night" />
+
+                    <TextView
+                        android:id="@+id/description_sea_night"
+                        style="@style/WeatherText"
+                        android:visibility="gone"
+                        android:layout_marginStart="@dimen/default_margin"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        app:layout_constraintTop_toBottomOf="@id/label_sea_night"/>
+
+                </LinearLayout>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </androidx.cardview.widget.CardView>
+
+        <!-- Places Card -->
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/card_view_places"
+            android:visibility="gone"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/card_view_night"
+            app:cardElevation="@dimen/card_elevation"
+            android:layout_margin="@dimen/default_margin"
+            tools:visibility="visible"
+            android:layout_marginBottom="@dimen/default_margin"
+            card_view:cardBackgroundColor="@color/colorCardBg"
+            card_view:cardCornerRadius="@dimen/card_radius">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/places_details_container"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/places_recyclerview"
+                    android:layout_width="0dp"
+                    app:layout_constraintWidth_percent="0.43"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintLeft_toLeftOf="parent"/>
+
+                <TextView
+                    android:id="@+id/place_details_title"
+                    style="@style/WeatherText"
+                    android:textStyle="bold"
+                    tools:text="Tartu"
+                    android:gravity="center"
+                    android:layout_marginTop="@dimen/default_margin"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintLeft_toRightOf="@id/places_recyclerview"
+                    app:layout_constraintRight_toRightOf="parent"/>
+
+                <View
+                    android:id="@+id/center"
+                    android:layout_width="20dp"
+                    android:layout_height="1dp"
+                    app:layout_constraintLeft_toRightOf="@id/places_recyclerview"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"/>
+
+                <TextView
+                    android:id="@+id/place_day_label"
+                    style="@style/WeatherText"
+                    android:text="@string/day"
+                    android:gravity="center"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/place_label_margin_top"
+                    android:layout_marginEnd="@dimen/place_label_margin_end"
+                    app:layout_constraintTop_toBottomOf="@id/place_details_title"
+                    app:layout_constraintRight_toLeftOf="@id/center"/>
+
+                <TextView
+                    android:id="@+id/place_night_label"
+                    style="@style/WeatherText"
+                    android:text="@string/night"
+                    android:gravity="center"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/place_label_margin_top"
+                    android:layout_marginStart="@dimen/place_label_margin_end"
+                    app:layout_constraintTop_toBottomOf="@id/place_details_title"
+                    app:layout_constraintLeft_toRightOf="@id/center"/>
+
+                <TextView
+                    android:id="@+id/place_details_day_max"
+                    style="@style/WeatherText"
+                    android:textSize="@dimen/place_details_temp_font_size"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/place_details_temp_margin_top"
+                    app:layout_constraintTop_toBottomOf="@id/place_day_label"
+                    app:layout_constraintRight_toRightOf="@id/place_day_label"
+                    app:layout_constraintLeft_toLeftOf="@id/place_day_label"/>
+
+                <TextView
+                    android:id="@+id/place_details_night_min"
+                    style="@style/WeatherText"
+                    android:textSize="@dimen/place_details_temp_font_size"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/place_details_temp_margin_top"
+                    app:layout_constraintTop_toBottomOf="@id/place_night_label"
+                    app:layout_constraintLeft_toLeftOf="@id/place_night_label"
+                    app:layout_constraintRight_toRightOf="@id/place_night_label"/>
+
+                <TextView
+                    android:id="@+id/place_day_phenomenon"
+                    style="@style/WeatherText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:maxWidth="@dimen/place_phenomenon_max_width"
+                    android:gravity="center"
+                    tools:text="Cloudy with clear spells"
+                    android:layout_marginTop="@dimen/place_phenomenon_margin_top"
+                    app:layout_constraintTop_toBottomOf="@id/place_details_day_max"
+                    app:layout_constraintRight_toRightOf="@id/place_day_label"
+                    app:layout_constraintLeft_toLeftOf="@id/place_day_label"/>
+
+                <TextView
+                    android:id="@+id/place_night_phenomenon"
+                    style="@style/WeatherText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:maxWidth="@dimen/place_phenomenon_max_width"
+                    android:gravity="center"
+                    tools:text="Light rain"
+                    android:layout_marginTop="@dimen/place_phenomenon_margin_top"
+                    app:layout_constraintTop_toBottomOf="@id/place_details_night_min"
+                    app:layout_constraintLeft_toLeftOf="@id/place_night_label"
+                    app:layout_constraintRight_toRightOf="@id/place_night_label"/>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </androidx.cardview.widget.CardView>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</ScrollView>

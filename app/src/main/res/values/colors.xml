@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#66004B</color>
+    <color name="colorPrimaryDark">#57003D</color>
+    <color name="colorAccent">#FFFFFF</color>
+    <color name="colorPrimaryLight">#7D0060</color>
+    <color name="colorUnselectedTab">#C78CB6</color>
+    <color name="colorCardBg">#F2FFFFFF</color>
+    <color name="colorSelectedRow">#2666004B</color>
+    <color name="colorTransparent">@android:color/transparent</color>
+</resources>
