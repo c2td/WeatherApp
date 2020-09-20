@@ -20,7 +20,7 @@ class ForecastViewModel(application: Application) : AndroidViewModel(application
     private fun refreshDataFromRepository() {
         viewModelScope.launch {
             try {
-                repository.refreshVideos()
+                repository.refreshData()
 
             } catch (networkError: IOException) {
                 Toast.makeText(getApplication(), R.string.network_error, Toast.LENGTH_LONG).show()

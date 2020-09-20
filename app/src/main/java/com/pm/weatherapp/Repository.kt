@@ -16,7 +16,7 @@ class Repository(private val database: AppDatabase) {
     val forecasts: LiveData<List<Forecast>> = database.forecastDao.getForecasts()
 
     // make the web request and update the database
-    suspend fun refreshVideos() {
+    suspend fun refreshData() {
         withContext(Dispatchers.IO) {
             val response = ForecastNetwork.apiService.getForecasts()
             database.forecastDao.insertForecasts(response.forecasts)
