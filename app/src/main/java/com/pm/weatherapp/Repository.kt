@@ -19,6 +19,8 @@ class Repository(private val database: AppDatabase) {
     suspend fun refreshData() {
         withContext(Dispatchers.IO) {
             val response = ForecastNetwork.apiService.getForecasts()
+            // delete the previous data
+            database.forecastDao.deleteAll()
             database.forecastDao.insertForecasts(response.forecasts)
         }
     }

@@ -12,6 +12,9 @@ interface ForecastDao {
     fun getForecasts(): LiveData<List<Forecast>>
 
     @Insert(onConflict = REPLACE)
-    fun insertForecasts(users: List<Forecast>)
+    fun insertForecasts(forecasts: List<Forecast>)
+
+    @Query("DELETE FROM forecast_table")
+    fun deleteAll()
 
 }
